@@ -58,13 +58,12 @@
   <div id="viewer-1"></div>
 
   <ul>
-    <li><a href="javascript:showPage(3)">3번글</a></li>
-    <li><a href="javascript:showPage(2)">2번글</a></li>
-    <li><a href="javascript:showPage(1)">1번글</a></li>
+    <li><a href="javascript:showPage(3);">3번글</a></li>
+    <li><a href="javascript:showPage(2);">2번글</a></li>
+    <li><a href="javascript:showPage(1);">1번글</a></li>
   </ul>
 
   <script>
-
     const Editor = toastui.Editor;
 
     function katexPlugin() {
@@ -87,7 +86,6 @@
       return { toHTMLRenderers };
     }
 
-    // id가 'viewer-1-template' 인 엘리먼트를 찾는다.
     const viewer1MarkdownSource = "로딩중...";
 
     const viewer1 = Editor.factory({
@@ -106,16 +104,15 @@
 
     function showPage(pageNo) {
       fetch(pageNo + ".md")
-      .then(response => response.text())
-      .then(text => {
-        viewer1.setMarkdown(test);
-        window.scrollTo({
-          top: 0,
-          behavior: "smooth"
-        })
-      
-      })
+        .then(response => response.text()) // 응답에서 본문만 취한다.
+        .then(text => {
+          viewer1.setMarkdown(text);
 
+          window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+          });
+        })
     }
 
   </script>
